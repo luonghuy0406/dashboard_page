@@ -47,15 +47,6 @@ export const items = [
     )
   },
   // {
-  //   title: 'Settings',
-  //   path: '/settings',
-  //   icon: (
-  //     <SvgIcon fontSize="small">
-  //       <CogIcon />
-  //     </SvgIcon>
-  //   )
-  // },
-  // {
   //   title: 'Login',
   //   path: '/auth/login',
   //   icon: (

@@ -3,11 +3,11 @@ import NextLink from 'next/link';
 import ArrowLeftIcon from '@heroicons/react/24/solid/ArrowLeftIcon';
 import { Box, Button, Container, SvgIcon, Typography } from '@mui/material';
 
-const Page = () => (
+const Page = ({ statusCode }) => (
   <>
     <Head>
       <title>
-        404 | Devias Kit
+        {statusCode} | Devias Kit
       </title>
     </Head>
     <Box
@@ -48,7 +48,7 @@ const Page = () => (
             sx={{ mb: 3 }}
             variant="h3"
           >
-            404: The page you are looking for isn’t here
+            {statusCode}: The page you are looking for isn’t here
           </Typography>
           <Typography
             align="center"
@@ -76,5 +76,8 @@ const Page = () => (
     </Box>
   </>
 );
-
+Page.getInitialProps = ({ res, err }) => {
+    const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+    return { statusCode }
+  }
 export default Page;

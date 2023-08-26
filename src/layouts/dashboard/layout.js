@@ -26,7 +26,7 @@ const LayoutContainer = styled('div')({
 export const Layout = withAuthGuard((props) => {
   const { children } = props;
   // const pathname = usePathname();
-  // const [openNav, setOpenNav] = useState(false);
+  const [openNav, setOpenNav] = useState(false);
 
   // const handlePathnameChange = useCallback(
   //   () => {
@@ -49,8 +49,8 @@ export const Layout = withAuthGuard((props) => {
     <>
       <TopNav onNavOpen={() => setOpenNav(true)} />
       <SideNav
-        // onClose={() => setOpenNav(false)}
-        // open={openNav}
+        onClose={() => setOpenNav(false)}
+        open={openNav}
       />
       <LayoutRoot>
         <LayoutContainer>
