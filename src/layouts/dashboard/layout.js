@@ -24,26 +24,9 @@ const LayoutContainer = styled('div')({
 });
 
 export const Layout = withAuthGuard((props) => {
-  const { children } = props;
+  const { children } = props
   // const pathname = usePathname();
   const [openNav, setOpenNav] = useState(false);
-
-  // const handlePathnameChange = useCallback(
-  //   () => {
-  //     if (openNav) {
-  //       setOpenNav(false);
-  //     }
-  //   },
-  //   [openNav]
-  // );
-
-  // useEffect(
-  //   () => {
-  //     handlePathnameChange();
-  //   },
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   [pathname]
-  // );
 
   return (
     <>

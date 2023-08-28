@@ -55,3 +55,4 @@ export const AuthGuard = (props) => {
 AuthGuard.propTypes = {
   children: PropTypes.node
 };
+

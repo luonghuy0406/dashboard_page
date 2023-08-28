@@ -25,16 +25,15 @@ const Page = () => {
   const [method, setMethod] = useState('email');
   const formik = useFormik({
     initialValues: {
-      email: 'demo@devias.io',
-      password: 'Password123!',
+      username: '',
+      password: '',
       submit: null
     },
     validationSchema: Yup.object({
-      email: Yup
+      username: Yup
         .string()
-        .email('Must be a valid email')
         .max(255)
-        .required('Email is required'),
+        .required('Username is required'),
       password: Yup
         .string()
         .max(255)
@@ -42,7 +41,7 @@ const Page = () => {
     }),
     onSubmit: async (values, helpers) => {
       try {
-        await auth.signIn(values.email, values.password);
+        await auth.signIn(values.username, values.password);
         router.push('/');
       } catch (err) {
         helpers.setStatus({ success: false });
@@ -52,20 +51,20 @@ const Page = () => {
     }
   });
 
-  const handleMethodChange = useCallback(
-    (event, value) => {
-      setMethod(value);
-    },
-    []
-  );
+  // const handleMethodChange = useCallback(
+  //   (event, value) => {
+  //     setMethod(value);
+  //   },
+  //   []
+  // );
 
-  const handleSkip = useCallback(
-    () => {
-      auth.skip();
-      router.push('/');
-    },
-    [auth, router]
-  );
+  // const handleSkip = useCallback(
+  //   () => {
+  //     auth.skip();
+  //     router.push('/');
+  //   },
+  //   [auth, router]
+  // );
 
   return (
     <>
@@ -109,11 +108,11 @@ const Page = () => {
                     error={!!(formik.touched.email && formik.errors.email)}
                     fullWidth
                     helperText={formik.touched.email && formik.errors.email}
-                    label="Email Address"
-                    name="email"
+                    label="Username"
+                    name="username"
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
-                    type="email"
+                    type="text"
                     value={formik.values.email}
                   />
                   <TextField

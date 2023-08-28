@@ -85,7 +85,7 @@ export const AuthProvider = (props) => {
         id: '5e86809283e28b96d2d38537',
         avatar: '/assets/avatars/avatar-anika-visser.png',
         name: 'Anika Visser',
-        email: 'anika.visser@devias.io'
+        username: 'anika.visser@devias.io'
       };
 
       dispatch({
@@ -107,53 +107,58 @@ export const AuthProvider = (props) => {
     []
   );
 
-  const skip = () => {
-    try {
-      window.sessionStorage.setItem('authenticated', 'true');
-    } catch (err) {
-      console.error(err);
-    }
+  // const skip = () => {
+  //   try {
+  //     window.sessionStorage.setItem('authenticated', 'true');
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
 
-    const user = {
-      id: '5e86809283e28b96d2d38537',
-      avatar: '/assets/avatars/avatar-anika-visser.png',
-      name: 'Anika Visser',
-      email: 'anika.visser@devias.io'
+  //   const user = {
+  //     id: '5e86809283e28b96d2d38537',
+  //     avatar: '/assets/avatars/avatar-anika-visser.png',
+  //     name: 'Anika Visser',
+  //     username: 'anika.visser@devias.io'
+  //   };
+
+  //   dispatch({
+  //     type: HANDLERS.SIGN_IN,
+  //     payload: user
+  //   });
+  // };
+
+  const signIn = async (username, password) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      "username": username,
+      "password": password
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
     };
 
-    dispatch({
-      type: HANDLERS.SIGN_IN,
-      payload: user
-    });
+    fetch("http://localhost:5000/login", requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        dispatch({
+        type: HANDLERS.SIGN_IN,
+        payload: {token: result}
+      });
+      })
+      .catch(error => console.log('error', error));
+
+    
   };
 
-  const signIn = async (email, password) => {
-    if (email !== 'demo@devias.io' || password !== 'Password123!') {
-      throw new Error('Please check your email and password');
-    }
-
-    try {
-      window.sessionStorage.setItem('authenticated', 'true');
-    } catch (err) {
-      console.error(err);
-    }
-
-    const user = {
-      id: '5e86809283e28b96d2d38537',
-      avatar: '/assets/avatars/avatar-anika-visser.png',
-      name: 'Anika Visser',
-      email: 'anika.visser@devias.io'
-    };
-
-    dispatch({
-      type: HANDLERS.SIGN_IN,
-      payload: user
-    });
-  };
-
-  const signUp = async (email, name, password) => {
-    throw new Error('Sign up is not implemented');
-  };
+  // const signUp = async (username, name, password) => {
+  //   throw new Error('Sign up is not implemented');
+  // };
 
   const signOut = () => {
     dispatch({
@@ -165,9 +170,9 @@ export const AuthProvider = (props) => {
     <AuthContext.Provider
       value={{
         ...state,
-        skip,
+        // skip,
         signIn,
-        signUp,
+        // signUp,
         signOut
       }}
     >
