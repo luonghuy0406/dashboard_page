@@ -27,6 +27,7 @@ import { Scrollbar } from 'src/components/scrollbar';
 import { getInitials } from 'src/utils/get-initials';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import EditorComponent from './EditorComponent';
 
 export const ProductsTable = (props) => {
   const {
@@ -143,17 +144,9 @@ function Row(props) {
                 }}
                 noValidate
                 autoComplete="off"
-                fullWidth
               >
                 <TextField id="outlined-basic" label="Product Name" variant="outlined" defaultValue={row.name}/>
-                <TextField
-                  id="outlined-multiline-flexible"
-                  label="Product description"
-                  defaultValue={row.description}
-                  multiline
-                  maxRows={4}
-                  fullWidth
-                />
+                <EditorComponent/>
               </Box>
               <Divider/>
               <Stack sx={{ m: 2 }} spacing={2} direction="row" justifyContent="space-between">
