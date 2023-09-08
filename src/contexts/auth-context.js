@@ -128,31 +128,47 @@ export const AuthProvider = (props) => {
   // };
 
   const signIn = async (username, password) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    // var myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
-      "username": username,
-      "password": password
-    });
+    // var raw = JSON.stringify({
+    //   "username": username,
+    //   "password": password
+    // });
 
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
+    // var requestOptions = {
+    //   method: 'POST',
+    //   headers: myHeaders,
+    //   body: raw,
+    //   redirect: 'follow'
+    // };
+
+    // fetch("http://localhost:5000/login", requestOptions)
+    //   .then(response => response.text())
+    //   .then(result => {
+    //     dispatch({
+    //     type: HANDLERS.SIGN_IN,
+    //     payload: {token: result}
+    //   });
+    //   })
+    //   .catch(error => console.log('error', error));
+  try {
+      window.sessionStorage.setItem('authenticated', 'true');
+    } catch (err) {
+      console.error(err);
+    }
+
+    const user = {
+      id: '5e86809283e28b96d2d38537',
+      avatar: '/assets/avatars/avatar-anika-visser.png',
+      name: 'Anika Visser',
+      username: 'anika.visser@devias.io'
     };
 
-    fetch("http://localhost:5000/login", requestOptions)
-      .then(response => response.text())
-      .then(result => {
-        dispatch({
-        type: HANDLERS.SIGN_IN,
-        payload: {token: result}
-      });
-      })
-      .catch(error => console.log('error', error));
-
+    dispatch({
+      type: HANDLERS.SIGN_IN,
+      payload: user
+    });
     
   };
 

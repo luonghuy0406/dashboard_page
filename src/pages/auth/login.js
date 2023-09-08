@@ -70,7 +70,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Login | Devias Kit
+          Login | MEKONG MARINE SUPPLY CO., LTD
         </title>
       </Head>
       <Box
