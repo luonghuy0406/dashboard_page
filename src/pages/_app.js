@@ -27,7 +27,7 @@ const App = (props) => {
     <CacheProvider value={emotionCache}>
       <Head>
         <title>
-          Devias Kit
+          MEKONG MARINE SUPPLY CO., LTD
         </title>
         <meta
           name="viewport"

@@ -11,10 +11,13 @@ import { Bold, Italic, Underline } from '@ckeditor/ckeditor5-basic-styles';
 import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
 import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
+import { FontColor, FontSize } from '@ckeditor/ckeditor5-font';
 import { Heading } from '@ckeditor/ckeditor5-heading';
 import {
 	Image,
 	ImageCaption,
+	ImageInsert,
+	ImageResize,
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload
@@ -27,7 +30,7 @@ import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
 import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
 import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
-import { Base64UploadAdapter } from '@ckeditor/ckeditor5-upload';
+import { SimpleUploadAdapter } from '@ckeditor/ckeditor5-upload';
 
 // You can read more about extending the build with additional plugins in the "Installing plugins" guide.
 // See https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html for details.
@@ -36,14 +39,17 @@ class Editor extends ClassicEditor {
 	public static override builtinPlugins = [
 		Alignment,
 		Autoformat,
-		Base64UploadAdapter,
 		BlockQuote,
 		Bold,
 		CloudServices,
 		Essentials,
+		FontColor,
+		FontSize,
 		Heading,
 		Image,
 		ImageCaption,
+		ImageInsert,
+		ImageResize,
 		ImageStyle,
 		ImageToolbar,
 		ImageUpload,
@@ -54,6 +60,7 @@ class Editor extends ClassicEditor {
 		MediaEmbed,
 		Paragraph,
 		PasteFromOffice,
+		SimpleUploadAdapter,
 		Table,
 		TableToolbar,
 		TextTransformation,
@@ -66,17 +73,20 @@ class Editor extends ClassicEditor {
 				'heading',
 				'|',
 				'bold',
-				'underline',
 				'italic',
+				'underline',
+				'fontColor',
+				'fontSize',
 				'link',
-				'alignment',
 				'bulletedList',
 				'numberedList',
+				'alignment',
 				'|',
 				'outdent',
 				'indent',
 				'|',
 				'imageUpload',
+				'imageInsert',
 				'blockQuote',
 				'insertTable',
 				'mediaEmbed',
